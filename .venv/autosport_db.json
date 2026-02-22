@@ -1,0 +1,32 @@
+{
+    "tracks": [
+        {
+            "id": 1,
+            "name": "Monaco GP",
+            "length": 3.33,
+            "country": "Monaco"
+        },
+        {
+            "id": 2,
+            "name": "Spa-Francorchamps",
+            "length": 7.004,
+            "country": "Belgium"
+        }
+    ],
+    "cars": [
+        {
+            "id": 1,
+            "brand": "Ferrari",
+            "model": "SF-24",
+            "power": 1000
+        }
+    ],
+    "drivers": [
+        {
+            "id": 1,
+            "name": "Charles Leclerc",
+            "age": 26,
+            "car_id": 1
+        }
+    ]
+}

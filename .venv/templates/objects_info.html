@@ -1,0 +1,19 @@
+{% extends "_layout.html" %}
+{% block title %}Траси{% endblock %}
+{% block content %}
+    <h2>Гоночні траси</h2>
+    {% for m in objects %}
+    <div class="row panel border-bottom mb-4 pb-3">
+        <div class="col-12">
+            <h3><strong>{{ m.name }}</strong></h3>
+            <p class="lead">
+                <strong>Країна:</strong> {{ m.country }} <br>
+                <strong>Довжина:</strong> {{ m.length }} км
+            </p>
+            {% if m.note %}
+                {% include '_descriptive_block.html' %}
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+{% endblock %}

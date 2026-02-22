@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 
-# Абстрактний інтерфейс (аналог IRepository)
 class IRepository(ABC):
     @abstractmethod
     def get_all(self): pass
@@ -9,7 +8,6 @@ class IRepository(ABC):
     @abstractmethod
     def get_by_id(self, id): pass
 
-# Базовий клас репозиторію
 class BaseRepository(IRepository):
     def __init__(self, collection):
         self._collection = collection
@@ -21,16 +19,13 @@ class BaseRepository(IRepository):
         return next((x for x in self._collection if x.id == id), None)
 
     def add(self, item):
-        # Автоматична генерація ID
-        new_id = max([x.id for x in self._collection], default=0) + 1
-        item.id = new_id
+        max_id = max([x.id for x in self._collection], default=0)
+        item.id = max_id + 1
         self._collection.append(item)
 
-# Одиниця роботи (Unit of Work)
 class AutosportUnitOfWork:
     def __init__(self, data_context):
         self._context = data_context
-        # Створюємо репозиторії, передаючи їм посилання на списки в контексті
         self.tracks = BaseRepository(data_context.tracks)
         self.cars = BaseRepository(data_context.cars)
         self.drivers = BaseRepository(data_context.drivers)
