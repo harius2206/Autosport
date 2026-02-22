@@ -1,0 +1,22 @@
+{% extends "_layout.html" %}
+{% block title %}Видалення траси{% endblock %}
+
+{% block content %}
+    <h2>Видалення</h2>
+    <h3>Ви впевнені, що хочете видалити цю трасу?</h3>
+    
+    <div class="row panel border-bottom mb-4 pb-3">
+        <div class="col-12">
+            <p class="lead">
+                <strong>Назва:</strong> {{ model.name }} <br>
+                <strong>Країна:</strong> {{ model.country }} <br>
+                <strong>Довжина:</strong> {{ model.length }} км
+            </p>
+        </div>
+    </div>
+
+    <form method="post">
+        <button type="submit" class="btn btn-danger">Підтвердити видалення</button>
+        <a href="/tracks" class="btn btn-secondary">Скасувати</a>
+    </form>
+{% endblock %}

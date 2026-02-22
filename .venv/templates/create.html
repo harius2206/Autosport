@@ -1,0 +1,30 @@
+{% extends "_layout.html" %}
+{% block content %}
+    <h2>Створення траси</h2>
+    <form method="post">
+        <div class="mb-3">
+            <label>Назва</label>
+            <input type="text" name="name" value="{{ model.name }}" class="form-control">
+            {% if errors and errors.name %}<span class="text-danger">{{ errors.name }}</span>{% endif %}
+        </div>
+
+        <div class="mb-3">
+            <label>Країна</label>
+            <select name="country" class="form-select">
+                <option value="">-- Виберіть країну --</option>
+                {% for c in countries %}
+                <option value="{{ c }}" {% if model.country == c %}selected{% endif %}>{{ c }}</option>
+                {% endfor %}
+            </select>
+            {% if errors and errors.country %}<span class="text-danger">{{ errors.country }}</span>{% endif %}
+        </div>
+
+        <div class="mb-3">
+            <label>Довжина (км)</label>
+            <input type="text" name="length" value="{{ model.length }}" class="form-control">
+            {% if errors and errors.length %}<span class="text-danger">{{ errors.length }}</span>{% endif %}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Зберегти</button>
+    </form>
+{% endblock %}

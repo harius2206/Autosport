@@ -1,0 +1,29 @@
+{% extends "_layout.html" %}
+{% block content %}
+    <h2>Список гоночних трас</h2>
+    <p><a href="/tracks/create" class="btn btn-success">Додати нову трасу</a></p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Назва</th>
+                <th>Країна</th>
+                <th>Довжина (км)</th>
+                <th>Дії</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for m in objects %}
+            <tr>
+                <td>{{ m.name }}</td>
+                <td>{{ m.country }}</td>
+                <td>{{ m.length }}</td>
+                <td>
+                    <a href="/tracks/edit/{{ m.id }}" class="btn btn-sm btn-primary">Редагувати</a>
+                    <a href="/tracks/delete/{{ m.id }}" class="btn btn-sm btn-danger">Видалити</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -7,6 +7,8 @@ class IRepository(ABC):
     def add(self, item): pass
     @abstractmethod
     def get_by_id(self, id): pass
+    @abstractmethod
+    def delete(self, id): pass
 
 class BaseRepository(IRepository):
     def __init__(self, collection):
@@ -22,6 +24,11 @@ class BaseRepository(IRepository):
         max_id = max([x.id for x in self._collection], default=0)
         item.id = max_id + 1
         self._collection.append(item)
+
+    def delete(self, id):
+        item = self.get_by_id(id)
+        if item:
+            self._collection.remove(item)
 
 class AutosportUnitOfWork:
     def __init__(self, data_context):

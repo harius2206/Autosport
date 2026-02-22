@@ -27,3 +27,49 @@ class Driver:
 
     def __str__(self):
         return f"Гонщик: {self.name} | Вік: {self.age} | Авто ID: {self.car_id} [ID: {self.id}]"
+
+# Файл: entities.py (доповнено моделями для представлення)
+
+class TrackBrowsingModel:
+    def __init__(self, id, name, country, length):
+        self.id = id
+        self.name = name
+        self.country = country
+        self.length = length
+
+    @staticmethod
+    def from_entity(track):
+        return TrackBrowsingModel(
+            id=track.id,
+            name=track.name,
+            country=track.country,
+            length=track.length
+        )
+
+class TrackEditingModel:
+    def __init__(self, id=None, name="", country="", length=0.0, note=""):
+        self.id = id
+        self.name = name
+        self.country = country
+        self.length = length
+        self.note = note
+
+    @staticmethod
+    def from_entity(track):
+        if not track: return None
+        return TrackEditingModel(
+            id=track.id,
+            name=track.name,
+            country=track.country,
+            length=track.length,
+            note=getattr(track, 'note', "")
+        )
+
+    def to_entity(self):
+        from entities import Track
+        return Track(
+            name=self.name,
+            length=self.length,
+            country=self.country,
+            id=self.id
+        )
